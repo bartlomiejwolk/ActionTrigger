@@ -14,15 +14,23 @@ namespace ActionTrigger {
     public sealed class Watcher : MonoBehaviour {
 
         #region FIELDS
+
+        [SerializeField]
+        private Trigger trigger;
+
         /// The action to accomplish
-        public Mode mode = Mode.Activate;
+        [SerializeField]
+        private Mode mode = Mode.Activate;
 
         /// The game object to affect. If none, the trigger work on this game object
-        public Object targetObj;
+        [SerializeField]
+        private Object targetObj;
 
-        public GameObject sourceGo;
+        [SerializeField]
+        private GameObject sourceGo;
 
-        public UnityEvent action;
+        [SerializeField]
+        private UnityEvent action;
         #endregion
 
         #region PROPERTIES
@@ -46,6 +54,11 @@ namespace ActionTrigger {
         public UnityEvent Action {
             get { return action; }
             set { action = value; }
+        }
+
+        public Trigger Trigger {
+            get { return trigger; }
+            set { trigger = value; }
         }
 
         #endregion
