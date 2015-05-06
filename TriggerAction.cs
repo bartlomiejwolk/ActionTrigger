@@ -1,8 +1,9 @@
 ﻿// This script was originally taken from standard Unity scripts package.
 
 using UnityEngine;
+using UnityEngine.Events;
 
-public class ActivateTrigger : MonoBehaviour {
+public class TriggerAction : MonoBehaviour {
     
     /// <summary>
     /// A multi-purpose script which causes an action to occur on trigger enter.
@@ -17,14 +18,16 @@ public class ActivateTrigger : MonoBehaviour {
     }
     
     /// The action to accomplish
-    public Mode action = Mode.Activate;
+    public Mode mode = Mode.Activate;
     
     /// The game object to affect. If none, the trigger work on this game object
     public Object target;
     public GameObject source;
     public int triggerCount = 1;///
     public bool repeatTrigger = false;
-    
+
+    public UnityEvent action;
+
     void DoActivateTrigger () {
         triggerCount--;
         
@@ -35,7 +38,7 @@ public class ActivateTrigger : MonoBehaviour {
             if (targetBehaviour != null)
                 targetGameObject = targetBehaviour.gameObject;
             
-            switch (action) {
+            switch (mode) {
             case Mode.Trigger:
                 targetGameObject.BroadcastMessage ("DoActivateTrigger");
                 break;
