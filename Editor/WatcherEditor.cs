@@ -4,11 +4,11 @@ using UnityEngine;
 
 namespace ActionTrigger {
 
-    [CustomEditor(typeof(Trigger))]
-    sealed class TriggerEditor : Editor {
+    [CustomEditor(typeof(Watcher))]
+    sealed class WatcherEditor : Editor {
 
         #region FIELDS
-        private Trigger Script { get; set; }
+        private Watcher Script { get; set; }
 
         #endregion
 
@@ -23,7 +23,7 @@ namespace ActionTrigger {
 
         #region UNITY MESSAGES
         private void OnEnable() {
-            Script = (Trigger) target;
+            Script = (Watcher) target;
 
             mode = serializedObject.FindProperty("mode");
             targetObj = serializedObject.FindProperty("targetObj");
@@ -79,7 +79,7 @@ namespace ActionTrigger {
             EditorGUILayout.PropertyField(
                 mode,
                 new GUIContent(
-                    "Mode",
+                    "Action",
                     ""));
         }
 #endregion

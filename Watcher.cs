@@ -5,7 +5,13 @@ using UnityEngine.Events;
 
 namespace ActionTrigger {
 
-    public sealed class Trigger : MonoBehaviour {
+    public enum Trigger { OnTriggerEnter, OnTriggerExit }
+
+    /// <summary>
+    /// Component that can trigger multiple types of action in response
+    /// to multiple events, like OnTriggerEnter().
+    /// </summary>
+    public sealed class Watcher : MonoBehaviour {
 
         #region FIELDS
         /// The action to accomplish
@@ -63,6 +69,7 @@ namespace ActionTrigger {
                     Action.Invoke();
                     break;
                 case Mode.Message:
+                    // todo Draw message text field in the inspector.
                     targetGameObject.BroadcastMessage("DoActivateTrigger");
                     break;
                 case Mode.Replace:
