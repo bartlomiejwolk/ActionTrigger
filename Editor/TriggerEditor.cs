@@ -1,4 +1,5 @@
-﻿using UnityEditor;
+﻿using System.Security;
+using UnityEditor;
 using UnityEngine;
 
 namespace ActionTrigger {
@@ -45,6 +46,8 @@ namespace ActionTrigger {
 
         #region INSPECTOR
         private void HandleDrawActionField() {
+            if (Script.Mode != Mode.UnityEvent) return;
+
             EditorGUILayout.PropertyField(
                 action,
                 new GUIContent(
@@ -53,6 +56,8 @@ namespace ActionTrigger {
         }
 
         private void HandleDrawTargetObjField() {
+            if (Script.Mode == Mode.UnityEvent) return;
+
             EditorGUILayout.PropertyField(
                 targetObj,
                 new GUIContent(
@@ -61,6 +66,8 @@ namespace ActionTrigger {
         }
 
         private void HandleDrawSourceGoField() {
+            if (Script.Mode != Mode.Replace) return;
+
             EditorGUILayout.PropertyField(
                 sourceGo,
                 new GUIContent(

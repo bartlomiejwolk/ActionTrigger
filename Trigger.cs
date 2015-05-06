@@ -67,7 +67,7 @@ namespace ActionTrigger {
                     break;
                 case Mode.Replace:
                     if (SourceGo != null) {
-                        Object.Instantiate(
+                        Instantiate(
                             SourceGo,
                             targetGameObject.transform.position,
                             targetGameObject.transform.rotation);
