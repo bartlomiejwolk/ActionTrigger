@@ -12,12 +12,13 @@ namespace ActionTrigger {
         /// </summary>
         public enum Mode {
 
-            Trigger = 0, // Just broadcast the action on to the target
-            Replace = 1, // replace target with source
-            Activate = 2, // Activate the target GameObject
-            Enable = 3, // Enable a component
-            Animate = 4, // Start animation on target
-            Deactivate = 5 // Decativate target GameObject
+            UnityEvent, // Invoke UnityAction
+            Replace, // replace target with source
+            Activate, // Activate the target GameObject
+            Enable, // Enable a component
+            Animate, // Start animation on target
+            Deactivate, // Decativate target GameObject
+            Message // Just broadcast the action on to the target
 
         }
 
@@ -46,7 +47,10 @@ namespace ActionTrigger {
                     targetGameObject = targetBehaviour.gameObject;
 
                 switch (mode) {
-                    case Mode.Trigger:
+                    case Mode.UnityEvent:
+                        action.Invoke();
+                        break;
+                    case Mode.Message:
                         targetGameObject.BroadcastMessage("DoActivateTrigger");
                         break;
                     case Mode.Replace:
