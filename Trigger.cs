@@ -25,9 +25,9 @@ namespace ActionTrigger {
         public Mode mode = Mode.Activate;
 
         /// The game object to affect. If none, the trigger work on this game object
-        public Object target;
+        public Object targetObj;
 
-        public GameObject source;
+        public GameObject sourceGo;
         public int triggerCount = 1;
 
         ///
@@ -39,7 +39,7 @@ namespace ActionTrigger {
             triggerCount--;
 
             if (triggerCount == 0 || repeatTrigger) {
-                Object currentTarget = target != null ? target : gameObject;
+                Object currentTarget = targetObj != null ? targetObj : gameObject;
                 Behaviour targetBehaviour = currentTarget as Behaviour;
                 GameObject targetGameObject = currentTarget as GameObject;
                 if (targetBehaviour != null)
@@ -50,9 +50,9 @@ namespace ActionTrigger {
                         targetGameObject.BroadcastMessage("DoActivateTrigger");
                         break;
                     case Mode.Replace:
-                        if (source != null) {
+                        if (sourceGo != null) {
                             Object.Instantiate(
-                                source,
+                                sourceGo,
                                 targetGameObject.transform.position,
                                 targetGameObject.transform.rotation);
                             DestroyObject(targetGameObject);
