@@ -16,8 +16,6 @@ namespace ActionTrigger {
         private SerializedProperty mode;
         private SerializedProperty targetObj;
         private SerializedProperty sourceGo;
-        private SerializedProperty triggerCount;
-        private SerializedProperty repeatTrigger;
         private SerializedProperty action;
         #endregion
 
@@ -29,8 +27,6 @@ namespace ActionTrigger {
             mode = serializedObject.FindProperty("mode");
             targetObj = serializedObject.FindProperty("targetObj");
             sourceGo = serializedObject.FindProperty("sourceGo");
-            triggerCount = serializedObject.FindProperty("triggerCount");
-            repeatTrigger = serializedObject.FindProperty("repeatTrigger");
             action = serializedObject.FindProperty("action");
         }
 
@@ -40,8 +36,6 @@ namespace ActionTrigger {
             HandleDrawModeDropdown();
             HandleDrawSourceGoField();
             HandleDrawTargetObjField();
-            HandleDrawTriggerCountField();
-            HandleDrawRepeatTriggerToggle();
             HandleDrawActionField();
 
             serializedObject.ApplyModifiedProperties();
@@ -55,22 +49,6 @@ namespace ActionTrigger {
                 action,
                 new GUIContent(
                     "Action",
-                    ""));
-        }
-
-        private void HandleDrawRepeatTriggerToggle() {
-            EditorGUILayout.PropertyField(
-                repeatTrigger,
-                new GUIContent(
-                    "Repeat Trigger",
-                    ""));
-        }
-
-        private void HandleDrawTriggerCountField() {
-            EditorGUILayout.PropertyField(
-                triggerCount,
-                new GUIContent(
-                    "Trigger Count",
                     ""));
         }
 
