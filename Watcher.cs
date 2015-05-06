@@ -20,7 +20,7 @@ namespace ActionTrigger {
 
         /// The action to accomplish
         [SerializeField]
-        private Mode mode = Mode.Activate;
+        private Mode mode;
 
         /// The game object to affect. If none, the trigger work on this game object
         [SerializeField]
