@@ -20,6 +20,7 @@ namespace ActionTrigger {
 
         /// The action to accomplish
         [SerializeField]
+        // todo rename to action
         private Mode mode;
 
         /// The game object to affect. If none, the trigger work on this game object
@@ -30,6 +31,7 @@ namespace ActionTrigger {
         private GameObject sourceGo;
 
         [SerializeField]
+        // todo rename to unityEventAction
         private UnityEvent action;
         #endregion
 
@@ -65,12 +67,21 @@ namespace ActionTrigger {
 
         #region UNITY MESSAGES
         private void OnTriggerEnter(Collider other) {
-            DoActivateTrigger();
+            if (Trigger != Trigger.OnTriggerEnter) return;
+
+            PerformAction();
         }
+
+        private void OnTriggerExit() {
+            if (Trigger != Trigger.OnTriggerExit) return;
+
+            PerformAction();
+        }
+
         #endregion
 
         #region METHODS
-        private void DoActivateTrigger() {
+        private void PerformAction() {
             Object currentTarget = TargetObj != null ? TargetObj : gameObject;
             Behaviour targetBehaviour = currentTarget as Behaviour;
             GameObject targetGameObject = currentTarget as GameObject;
