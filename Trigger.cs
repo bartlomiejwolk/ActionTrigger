@@ -3,9 +3,9 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace TriggerAction {
+namespace ActionTrigger {
 
-    public class TriggerAction : MonoBehaviour {
+    public sealed class Trigger : MonoBehaviour {
 
         /// <summary>
         /// A multi-purpose script which causes an action to occur on trigger enter.
