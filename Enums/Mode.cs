@@ -6,12 +6,12 @@
     public enum Mode {
 
         UnityEvent, // Invoke UnityAction
-        Replace, // replace target with source
-        Activate, // Activate the target GameObject
+        Message, // Just broadcast the action on to the target
         Enable, // Enable a component
-        Animate, // Start animation on target
+        Activate, // Activate the target GameObject
         Deactivate, // Decativate target GameObject
-        Message // Just broadcast the action on to the target
+        Replace, // replace target with source
+        Animate // Start animation on target
 
     }
 
