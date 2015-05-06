@@ -14,10 +14,10 @@ namespace ActionTrigger {
         #region SERIALIZED PROPERTIES
 
         private SerializedProperty trigger;
-        private SerializedProperty mode;
+        private SerializedProperty action;
         private SerializedProperty targetObj;
         private SerializedProperty sourceGo;
-        private SerializedProperty action;
+        private SerializedProperty unityEventAction;
         #endregion
 
         #region UNITY MESSAGES
@@ -25,10 +25,10 @@ namespace ActionTrigger {
             Script = (Watcher) target;
 
             trigger = serializedObject.FindProperty("trigger");
-            mode = serializedObject.FindProperty("mode");
+            action = serializedObject.FindProperty("action");
             targetObj = serializedObject.FindProperty("targetObj");
             sourceGo = serializedObject.FindProperty("sourceGo");
-            action = serializedObject.FindProperty("action");
+            unityEventAction = serializedObject.FindProperty("unityEventAction");
         }
 
         public override void OnInspectorGUI() {
@@ -56,17 +56,17 @@ namespace ActionTrigger {
 
         #region INSPECTOR
         private void HandleDrawActionField() {
-            if (Script.Mode != Mode.UnityEvent) return;
+            if (Script.Action != Mode.UnityEvent) return;
 
             EditorGUILayout.PropertyField(
-                action,
+                unityEventAction,
                 new GUIContent(
                     "Action",
                     ""));
         }
 
         private void HandleDrawTargetObjField() {
-            if (Script.Mode == Mode.UnityEvent) return;
+            if (Script.Action == Mode.UnityEvent) return;
 
             EditorGUILayout.PropertyField(
                 targetObj,
@@ -76,7 +76,7 @@ namespace ActionTrigger {
         }
 
         private void HandleDrawSourceGoField() {
-            if (Script.Mode != Mode.Replace) return;
+            if (Script.Action != Mode.Replace) return;
 
             EditorGUILayout.PropertyField(
                 sourceGo,
@@ -87,7 +87,7 @@ namespace ActionTrigger {
 
         private void DrawModeDropdown() {
             EditorGUILayout.PropertyField(
-                mode,
+                action,
                 new GUIContent(
                     "Action",
                     ""));

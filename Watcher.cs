@@ -20,8 +20,7 @@ namespace ActionTrigger {
 
         /// The action to accomplish
         [SerializeField]
-        // todo rename to action
-        private Mode mode;
+        private Mode action;
 
         /// The game object to affect. If none, the trigger work on this game object
         [SerializeField]
@@ -31,15 +30,14 @@ namespace ActionTrigger {
         private GameObject sourceGo;
 
         [SerializeField]
-        // todo rename to unityEventAction
-        private UnityEvent action;
+        private UnityEvent unityEventAction;
         #endregion
 
         #region PROPERTIES
         /// The action to accomplish
-        public Mode Mode {
-            get { return mode; }
-            set { mode = value; }
+        public Mode Action {
+            get { return action; }
+            set { action = value; }
         }
 
         /// The game object to affect. If none, the trigger work on this game object
@@ -53,9 +51,9 @@ namespace ActionTrigger {
             set { sourceGo = value; }
         }
 
-        public UnityEvent Action {
-            get { return action; }
-            set { action = value; }
+        public UnityEvent UnityEventAction {
+            get { return unityEventAction; }
+            set { unityEventAction = value; }
         }
 
         public Trigger Trigger {
@@ -88,9 +86,9 @@ namespace ActionTrigger {
             if (targetBehaviour != null)
                 targetGameObject = targetBehaviour.gameObject;
 
-            switch (Mode) {
+            switch (Action) {
                 case Mode.UnityEvent:
-                    Action.Invoke();
+                    UnityEventAction.Invoke();
                     break;
                 case Mode.Message:
                     // todo Draw message text field in the inspector.
