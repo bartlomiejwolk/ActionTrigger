@@ -18,6 +18,8 @@ namespace ActionTrigger {
         private SerializedProperty targetObj;
         private SerializedProperty sourceGo;
         private SerializedProperty unityEventAction;
+        private SerializedProperty message;
+
         #endregion
 
         #region UNITY MESSAGES
@@ -29,6 +31,7 @@ namespace ActionTrigger {
             targetObj = serializedObject.FindProperty("targetObj");
             sourceGo = serializedObject.FindProperty("sourceGo");
             unityEventAction = serializedObject.FindProperty("unityEventAction");
+            message = serializedObject.FindProperty("message");
         }
 
         public override void OnInspectorGUI() {
@@ -38,6 +41,7 @@ namespace ActionTrigger {
             DrawModeDropdown();
             HandleDrawSourceGoField();
             HandleDrawTargetObjField();
+            HandleDrawMessageField();
             HandleDrawActionField();
 
             serializedObject.ApplyModifiedProperties();
@@ -45,6 +49,14 @@ namespace ActionTrigger {
         #endregion
 
         #region INSPECTOR
+        private void HandleDrawMessageField() {
+            EditorGUILayout.PropertyField(
+                message,
+                new GUIContent(
+                    "Message",
+                    "Message to broadcast."));
+        }
+
         private void DrawTriggerDropdown() {
             EditorGUILayout.PropertyField(
                 trigger,

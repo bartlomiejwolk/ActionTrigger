@@ -31,6 +31,10 @@ namespace ActionTrigger {
 
         [SerializeField]
         private UnityEvent unityEventAction;
+
+        [SerializeField]
+        private string message;
+
         #endregion
 
         #region PROPERTIES
@@ -61,6 +65,11 @@ namespace ActionTrigger {
             set { trigger = value; }
         }
 
+        public string Message {
+            get { return message; }
+            set { message = value; }
+        }
+
         #endregion
 
         #region UNITY MESSAGES
@@ -79,6 +88,8 @@ namespace ActionTrigger {
         #endregion
 
         #region METHODS
+        // todo make public
+        // todo extract methods
         private void PerformAction() {
             Object currentTarget = TargetObj != null ? TargetObj : gameObject;
             Behaviour targetBehaviour = currentTarget as Behaviour;
@@ -92,7 +103,7 @@ namespace ActionTrigger {
                     break;
                 case Mode.Message:
                     // todo Draw message text field in the inspector.
-                    targetGameObject.BroadcastMessage("DoActivateTrigger");
+                    targetGameObject.BroadcastMessage(Message);
                     break;
                 case Mode.Replace:
                     if (SourceGo != null) {
