@@ -8,7 +8,7 @@ Licensed under MIT license. See LICENSE file in the project root folder.
 
 ## Features
 
-* Events that can trigger action:
+* Events that can trigger an action:
     * OnTriggerEnter
 	* OnTriggerExit
 * Actions to perform:
