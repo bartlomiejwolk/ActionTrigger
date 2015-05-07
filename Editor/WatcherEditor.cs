@@ -104,6 +104,8 @@ namespace ActionTrigger {
         }
 
         private void HandleDrawMessageField() {
+            if (Script.Action != Mode.Message) return;
+
             EditorGUILayout.PropertyField(
                 message,
                 new GUIContent(
