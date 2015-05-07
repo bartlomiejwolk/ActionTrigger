@@ -1,4 +1,7 @@
-﻿// This script was originally taken from standard Unity scripts package.
+﻿// Copyright (c) 2015 Bartlomiej Wolk (bartlomiejwolk@gmail.com)
+// 
+// This file is part of the ActionTrigger extension for Unity.
+// Licensed under the MIT license. See LICENSE file in the project root folder.
 
 using UnityEngine;
 using UnityEngine.Events;
@@ -9,6 +12,9 @@ namespace ActionTrigger {
     /// Component that can trigger multiple types of action in response
     /// to multiple events, like OnTriggerEnter().
     /// </summary>
+    /// <remarks>
+    /// This script was originally part of standard Unity scripts package.
+    /// </remarks>
     public sealed class Watcher : MonoBehaviour {
 
         #region CONSTANTS
