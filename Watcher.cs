@@ -126,7 +126,7 @@ namespace ActionTrigger {
                     break;
 
                 case Mode.Message:
-                    targetGameObject.BroadcastMessage(Message);
+                    HandleMessageMode(targetGameObject);
                     break;
 
                 case Mode.Replace:
@@ -149,6 +149,20 @@ namespace ActionTrigger {
                     targetGameObject.SetActive(false);
                     break;
             }
+        }
+
+        private void HandleMessageMode(GameObject targetGameObject) {
+            if (targetGameObject == null) {
+                Utilities.MissingReference(
+                    this,
+                    "Target Object",
+                    "You didn't specify GameObject to send the message to.",
+                    InfoType.Warning);
+
+                return;
+            }
+
+            targetGameObject.BroadcastMessage(Message);
         }
 
         private static void HandleEnableMode(Behaviour targetBehaviour) {
