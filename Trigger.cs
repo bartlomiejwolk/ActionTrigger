@@ -15,7 +15,7 @@ namespace ActionTrigger {
     /// <remarks>
     ///     This script was originally part of standard Unity scripts package.
     /// </remarks>
-    public sealed class Watcher : MonoBehaviour {
+    public sealed class Trigger : MonoBehaviour {
         #region CONSTANTS
 
         public const string EXTENSION = "ActionTrigger";
