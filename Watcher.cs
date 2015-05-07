@@ -11,6 +11,13 @@ namespace ActionTrigger {
     /// </summary>
     public sealed class Watcher : MonoBehaviour {
 
+        #region CONSTANTS
+
+        public const string VERSION = "v0.1.0";
+        public const string EXTENSION = "ActionTrigger";
+
+        #endregion
+
         #region FIELDS
 
         [SerializeField]

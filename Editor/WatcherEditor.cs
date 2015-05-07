@@ -37,6 +37,7 @@ namespace ActionTrigger {
         public override void OnInspectorGUI() {
             serializedObject.Update();
 
+            DrawVersionLabel();
             DrawTriggerDropdown();
             DrawModeDropdown();
             HandleDrawSourceGoField();
@@ -46,6 +47,14 @@ namespace ActionTrigger {
 
             serializedObject.ApplyModifiedProperties();
         }
+
+        private void DrawVersionLabel() {
+            EditorGUILayout.LabelField(string.Format(
+                "{0} ({1})",
+                Watcher.VERSION,
+                Watcher.EXTENSION));
+        }
+
         #endregion
 
         #region INSPECTOR
