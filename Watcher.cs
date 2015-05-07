@@ -25,24 +25,40 @@ namespace ActionTrigger {
 
         #region FIELDS
 
+        /// <summary>
         /// The action to accomplish
+        /// </summary>
         [SerializeField]
         private Mode action;
 
+        /// <summary>
+        /// Message to broadcast.
+        /// </summary>
         [SerializeField]
         private string message;
 
+        /// <summary>
+        /// Source game object for actions that require one.
+        /// </summary>
         [SerializeField]
         private GameObject sourceGo;
 
+        /// <summary>
         /// The game object to affect. If none, the trigger work on this game
-        /// object
+        /// object.
+        /// </summary>
         [SerializeField]
         private Object targetObj;
 
+        /// <summary>
+        /// Trigger that causes the specified action to be executed.
+        /// </summary>
         [SerializeField]
         private Trigger trigger;
 
+        /// <summary>
+        /// UnityEvent for action that require one.
+        /// </summary>
         [SerializeField]
         private UnityEvent unityEventAction;
 
@@ -103,6 +119,9 @@ namespace ActionTrigger {
 
         #region METHODS
 
+        /// <summary>
+        /// Perform specified action manually.
+        /// </summary>
         public void PerformAction() {
             // Get Object.
             var currentTarget = TargetObj ?? gameObject;
@@ -178,6 +197,7 @@ namespace ActionTrigger {
                 SourceGo,
                 targetGameObject.transform.position,
                 targetGameObject.transform.rotation);
+
             DestroyObject(targetGameObject);
         }
 
