@@ -1,43 +1,44 @@
 ﻿// Copyright (c) 2015 Bartlomiej Wolk (bartlomiejwolk@gmail.com)
 // 
 // This file is part of the ActionTrigger extension for Unity.
-// Licensed under the MIT license. See LICENSE file in the project root folder.
+// Licensed under the MIT license. See LICENSE file in the project folder.
 
 using UnityEditor;
 using UnityEngine;
 
 namespace ActionTrigger {
 
-    [CustomEditor(typeof(Watcher))]
+    [CustomEditor(typeof (Watcher))]
     public sealed class WatcherEditor : Editor {
-
         #region FIELDS
+
         private Watcher Script { get; set; }
 
-        #endregion
+        #endregion FIELDS
+
+        #region METHODS
+
+        [MenuItem("Component/ActionTrigger")]
+        private static void AddWatcherComponent() {
+            if (Selection.activeGameObject != null) {
+                Selection.activeGameObject.AddComponent(typeof (Watcher));
+            }
+        }
+
+        #endregion METHODS
 
         #region SERIALIZED PROPERTIES
 
-        private SerializedProperty trigger;
         private SerializedProperty action;
-        private SerializedProperty targetObj;
-        private SerializedProperty sourceGo;
-        private SerializedProperty unityEventAction;
         private SerializedProperty message;
+        private SerializedProperty sourceGo;
+        private SerializedProperty targetObj;
+        private SerializedProperty trigger;
+        private SerializedProperty unityEventAction;
 
-        #endregion
+        #endregion SERIALIZED PROPERTIES
 
         #region UNITY MESSAGES
-        private void OnEnable() {
-            Script = (Watcher) target;
-
-            trigger = serializedObject.FindProperty("trigger");
-            action = serializedObject.FindProperty("action");
-            targetObj = serializedObject.FindProperty("targetObj");
-            sourceGo = serializedObject.FindProperty("sourceGo");
-            unityEventAction = serializedObject.FindProperty("unityEventAction");
-            message = serializedObject.FindProperty("message");
-        }
 
         public override void OnInspectorGUI() {
             serializedObject.Update();
@@ -54,21 +55,34 @@ namespace ActionTrigger {
         }
 
         private void DrawVersionLabel() {
-            EditorGUILayout.LabelField(string.Format(
-                "{0} ({1})",
-                Watcher.VERSION,
-                Watcher.EXTENSION));
+            EditorGUILayout.LabelField(
+                string.Format(
+                    "{0} ({1})",
+                    Watcher.VERSION,
+                    Watcher.EXTENSION));
         }
 
-        #endregion
+        private void OnEnable() {
+            Script = (Watcher) target;
+
+            trigger = serializedObject.FindProperty("trigger");
+            action = serializedObject.FindProperty("action");
+            targetObj = serializedObject.FindProperty("targetObj");
+            sourceGo = serializedObject.FindProperty("sourceGo");
+            unityEventAction = serializedObject.FindProperty("unityEventAction");
+            message = serializedObject.FindProperty("message");
+        }
+
+        #endregion UNITY MESSAGES
 
         #region INSPECTOR
-        private void HandleDrawMessageField() {
+
+        private void DrawModeDropdown() {
             EditorGUILayout.PropertyField(
-                message,
+                action,
                 new GUIContent(
-                    "Message",
-                    "Message to broadcast."));
+                    "Action",
+                    "Action to perform when trigger condition is met."));
         }
 
         private void DrawTriggerDropdown() {
@@ -89,14 +103,12 @@ namespace ActionTrigger {
                     ""));
         }
 
-        private void HandleDrawTargetObjField() {
-            if (Script.Action == Mode.UnityEvent) return;
-
+        private void HandleDrawMessageField() {
             EditorGUILayout.PropertyField(
-                targetObj,
+                message,
                 new GUIContent(
-                    "Target Object",
-                    ""));
+                    "Message",
+                    "Message to broadcast."));
         }
 
         private void HandleDrawSourceGoField() {
@@ -109,27 +121,17 @@ namespace ActionTrigger {
                     ""));
         }
 
-        private void DrawModeDropdown() {
+        private void HandleDrawTargetObjField() {
+            if (Script.Action == Mode.UnityEvent) return;
+
             EditorGUILayout.PropertyField(
-                action,
+                targetObj,
                 new GUIContent(
-                    "Action",
-                    "Action to perform when trigger condition is met."));
-        }
-#endregion
-
-        #region METHODS
-
-        [MenuItem("Component/ActionTrigger")]
-        private static void AddWatcherComponent() {
-            if (Selection.activeGameObject != null) {
-                Selection.activeGameObject.AddComponent(typeof (Watcher));
-            }
+                    "Target Object",
+                    ""));
         }
 
-
-        #endregion
-
+        #endregion INSPECTOR
     }
 
 }
