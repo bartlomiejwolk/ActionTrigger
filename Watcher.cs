@@ -88,9 +88,8 @@ namespace ActionTrigger {
         #endregion
 
         #region METHODS
-        // todo make public
         // todo extract methods
-        private void PerformAction() {
+        public void PerformAction() {
             Object currentTarget = TargetObj != null ? TargetObj : gameObject;
             Behaviour targetBehaviour = currentTarget as Behaviour;
             GameObject targetGameObject = currentTarget as GameObject;
@@ -102,7 +101,6 @@ namespace ActionTrigger {
                     UnityEventAction.Invoke();
                     break;
                 case Mode.Message:
-                    // todo Draw message text field in the inspector.
                     targetGameObject.BroadcastMessage(Message);
                     break;
                 case Mode.Replace:
