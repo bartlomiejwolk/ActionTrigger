@@ -42,19 +42,17 @@ namespace ActionTrigger {
 
             serializedObject.ApplyModifiedProperties();
         }
+        #endregion
 
+        #region INSPECTOR
         private void DrawTriggerDropdown() {
             EditorGUILayout.PropertyField(
                 trigger,
                 new GUIContent(
                     "Trigger",
-                    ""));
+                    "Event that triggers the action."));
         }
 
-
-        #endregion
-
-        #region INSPECTOR
         private void HandleDrawActionField() {
             if (Script.Action != Mode.UnityEvent) return;
 
@@ -90,7 +88,7 @@ namespace ActionTrigger {
                 action,
                 new GUIContent(
                     "Action",
-                    ""));
+                    "Action to perform when trigger condition is met."));
         }
 #endregion
 
