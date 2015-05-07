@@ -6,7 +6,8 @@
 namespace ActionTrigger {
 
     /// <summary>
-    /// A multi-purpose script which causes an action to occur on trigger enter.
+    ///     A multi-purpose script which causes an action to occur on trigger
+    ///     enter.
     /// </summary>
     public enum Mode {
 
