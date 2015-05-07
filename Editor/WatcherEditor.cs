@@ -33,7 +33,7 @@ namespace ActionTrigger {
         private SerializedProperty message;
         private SerializedProperty sourceGo;
         private SerializedProperty targetObj;
-        private SerializedProperty trigger;
+        private SerializedProperty triggerType;
         private SerializedProperty unityEventAction;
 
         #endregion SERIALIZED PROPERTIES
@@ -65,7 +65,7 @@ namespace ActionTrigger {
         private void OnEnable() {
             Script = (Watcher) target;
 
-            trigger = serializedObject.FindProperty("trigger");
+            triggerType = serializedObject.FindProperty("triggerType");
             action = serializedObject.FindProperty("action");
             targetObj = serializedObject.FindProperty("targetObj");
             sourceGo = serializedObject.FindProperty("sourceGo");
@@ -87,7 +87,7 @@ namespace ActionTrigger {
 
         private void DrawTriggerDropdown() {
             EditorGUILayout.PropertyField(
-                trigger,
+                triggerType,
                 new GUIContent(
                     "Trigger",
                     "Event that triggers the action."));
