@@ -88,14 +88,14 @@ namespace ActionTrigger {
         #region METHODS
         public void PerformAction() {
             // Get Object.
-            Object currentTarget = TargetObj ?? gameObject;
+            var currentTarget = TargetObj ?? gameObject;
 
             // Convert Object to Behaviour.
             // Will be null if GameObject was passed.
-            Behaviour targetBehaviour = currentTarget as Behaviour;
+            var targetBehaviour = currentTarget as Behaviour;
             // Convert Object to GameObject.
             // Will be null if Behaviour was passed.
-            GameObject targetGameObject = currentTarget as GameObject;
+            var targetGameObject = currentTarget as GameObject;
 
             // If component was passed..
             if (targetBehaviour != null) {
