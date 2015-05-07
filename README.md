@@ -1,7 +1,6 @@
 ﻿# ActionTrigger
 
-*ActionTrigger* extension for Unity.   
-Based on a *ActivateTrigger* script that is part of the Unity standard assets.
+*ActionTrigger* extension for Unity. Based on a *ActivateTrigger* script that is part of the Unity standard assets.
 
 Licensed under MIT license. See LICENSE file in the project root folder.
 
@@ -9,10 +8,10 @@ Licensed under MIT license. See LICENSE file in the project root folder.
 
 ## Features
 
-* Different kinds of events that can trigger action:
+* Events that can trigger action:
     * OnTriggerEnter
 	* OnTriggerExit
-* Multiple actions:
+* Actions to perform:
     * UnityEvent
 	* Message
 	* Enable
