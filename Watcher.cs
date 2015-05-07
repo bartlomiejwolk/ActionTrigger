@@ -5,8 +5,6 @@ using UnityEngine.Events;
 
 namespace ActionTrigger {
 
-    public enum Trigger { OnTriggerEnter, OnTriggerExit }
-
     /// <summary>
     /// Component that can trigger multiple types of action in response
     /// to multiple events, like OnTriggerEnter().
