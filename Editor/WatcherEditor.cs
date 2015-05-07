@@ -94,6 +94,18 @@ namespace ActionTrigger {
         }
 #endregion
 
+        #region METHODS
+
+        [MenuItem("Component/ActionTrigger")]
+        private static void AddWatcherComponent() {
+            if (Selection.activeGameObject != null) {
+                Selection.activeGameObject.AddComponent(typeof (Watcher));
+            }
+        }
+
+
+        #endregion
+
     }
 
 }
