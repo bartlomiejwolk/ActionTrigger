@@ -104,20 +104,13 @@ namespace ActionTrigger {
                     targetGameObject.BroadcastMessage(Message);
                     break;
                 case Mode.Replace:
-                    if (SourceGo != null) {
-                        Instantiate(
-                            SourceGo,
-                            targetGameObject.transform.position,
-                            targetGameObject.transform.rotation);
-                        DestroyObject(targetGameObject);
-                    }
+                    HandleReplaceMode(targetGameObject);
                     break;
                 case Mode.Activate:
                     targetGameObject.SetActive(true);
                     break;
                 case Mode.Enable:
-                    if (targetBehaviour != null)
-                        targetBehaviour.enabled = true;
+                    HandleEnableMode(targetBehaviour);
                     break;
                 case Mode.Animate:
                     targetGameObject.GetComponent<Animation>().Play();
@@ -126,6 +119,22 @@ namespace ActionTrigger {
                     targetGameObject.SetActive(false);
                     break;
             }
+        }
+
+        private static void HandleEnableMode(Behaviour targetBehaviour) {
+            if (targetBehaviour == null) return;
+
+            targetBehaviour.enabled = true;
+        }
+
+        private void HandleReplaceMode(GameObject targetGameObject) {
+            if (SourceGo == null) return;
+
+            Instantiate(
+                SourceGo,
+                targetGameObject.transform.position,
+                targetGameObject.transform.rotation);
+            DestroyObject(targetGameObject);
         }
 
         #endregion
