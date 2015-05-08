@@ -21,6 +21,8 @@ Licensed under MIT license. See LICENSE file in the project root folder.
 	* Animate
 * All properties can be set with public API
 
+[API Reference](https://github.com/bartlomiejwolk/actiontrigger/wiki/API%20Reference)
+
 ## Quick Start
 
 1. Select a game object in the hierarchy window.
