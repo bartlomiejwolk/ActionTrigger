@@ -15,7 +15,7 @@ namespace ActionTrigger {
     /// <remarks>
     ///     This script was originally part of standard Unity scripts package.
     /// </remarks>
-    public sealed class Watcher : MonoBehaviour {
+    public sealed class Trigger : MonoBehaviour {
         #region CONSTANTS
 
         public const string EXTENSION = "ActionTrigger";
@@ -54,7 +54,7 @@ namespace ActionTrigger {
         /// Trigger that causes the specified action to be executed.
         /// </summary>
         [SerializeField]
-        private Trigger trigger;
+        private TriggerType triggerType;
 
         /// <summary>
         /// UnityEvent for action that require one.
@@ -89,9 +89,9 @@ namespace ActionTrigger {
             set { targetObj = value; }
         }
 
-        public Trigger Trigger {
-            get { return trigger; }
-            set { trigger = value; }
+        public TriggerType TriggerType {
+            get { return triggerType; }
+            set { triggerType = value; }
         }
 
         public UnityEvent UnityEventAction {
@@ -104,13 +104,13 @@ namespace ActionTrigger {
         #region UNITY MESSAGES
 
         private void OnTriggerEnter(Collider other) {
-            if (Trigger != Trigger.OnTriggerEnter) return;
+            if (TriggerType != TriggerType.OnTriggerEnter) return;
 
             PerformAction();
         }
 
         private void OnTriggerExit() {
-            if (Trigger != Trigger.OnTriggerExit) return;
+            if (TriggerType != TriggerType.OnTriggerExit) return;
 
             PerformAction();
         }

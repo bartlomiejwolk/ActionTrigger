@@ -8,11 +8,11 @@ using UnityEngine;
 
 namespace ActionTrigger {
 
-    [CustomEditor(typeof (Watcher))]
-    public sealed class WatcherEditor : Editor {
+    [CustomEditor(typeof (Trigger))]
+    public sealed class TriggerEditor : Editor {
         #region FIELDS
 
-        private Watcher Script { get; set; }
+        private Trigger Script { get; set; }
 
         #endregion FIELDS
 
@@ -21,7 +21,7 @@ namespace ActionTrigger {
         [MenuItem("Component/ActionTrigger")]
         private static void AddWatcherComponent() {
             if (Selection.activeGameObject != null) {
-                Selection.activeGameObject.AddComponent(typeof (Watcher));
+                Selection.activeGameObject.AddComponent(typeof (Trigger));
             }
         }
 
@@ -33,7 +33,7 @@ namespace ActionTrigger {
         private SerializedProperty message;
         private SerializedProperty sourceGo;
         private SerializedProperty targetObj;
-        private SerializedProperty trigger;
+        private SerializedProperty triggerType;
         private SerializedProperty unityEventAction;
 
         #endregion SERIALIZED PROPERTIES
@@ -53,19 +53,10 @@ namespace ActionTrigger {
 
             serializedObject.ApplyModifiedProperties();
         }
-
-        private void DrawVersionLabel() {
-            EditorGUILayout.LabelField(
-                string.Format(
-                    "{0} ({1})",
-                    Watcher.VERSION,
-                    Watcher.EXTENSION));
-        }
-
         private void OnEnable() {
-            Script = (Watcher) target;
+            Script = (Trigger) target;
 
-            trigger = serializedObject.FindProperty("trigger");
+            triggerType = serializedObject.FindProperty("triggerType");
             action = serializedObject.FindProperty("action");
             targetObj = serializedObject.FindProperty("targetObj");
             sourceGo = serializedObject.FindProperty("sourceGo");
@@ -76,6 +67,14 @@ namespace ActionTrigger {
         #endregion UNITY MESSAGES
 
         #region INSPECTOR
+        private void DrawVersionLabel() {
+            EditorGUILayout.LabelField(
+                string.Format(
+                    "{0} ({1})",
+                    Trigger.VERSION,
+                    Trigger.EXTENSION));
+        }
+
 
         private void DrawModeDropdown() {
             EditorGUILayout.PropertyField(
@@ -87,7 +86,7 @@ namespace ActionTrigger {
 
         private void DrawTriggerDropdown() {
             EditorGUILayout.PropertyField(
-                trigger,
+                triggerType,
                 new GUIContent(
                     "Trigger",
                     "Event that triggers the action."));
