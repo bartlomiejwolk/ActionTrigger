@@ -53,15 +53,6 @@ namespace ActionTrigger {
 
             serializedObject.ApplyModifiedProperties();
         }
-
-        private void DrawVersionLabel() {
-            EditorGUILayout.LabelField(
-                string.Format(
-                    "{0} ({1})",
-                    Trigger.VERSION,
-                    Trigger.EXTENSION));
-        }
-
         private void OnEnable() {
             Script = (Trigger) target;
 
@@ -76,6 +67,14 @@ namespace ActionTrigger {
         #endregion UNITY MESSAGES
 
         #region INSPECTOR
+        private void DrawVersionLabel() {
+            EditorGUILayout.LabelField(
+                string.Format(
+                    "{0} ({1})",
+                    Trigger.VERSION,
+                    Trigger.EXTENSION));
+        }
+
 
         private void DrawModeDropdown() {
             EditorGUILayout.PropertyField(
