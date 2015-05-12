@@ -35,6 +35,7 @@ namespace ActionTrigger {
         private SerializedProperty targetObj;
         private SerializedProperty triggerType;
         private SerializedProperty unityEventAction;
+        private SerializedProperty description;
 
         #endregion SERIALIZED PROPERTIES
 
@@ -44,6 +45,10 @@ namespace ActionTrigger {
             serializedObject.Update();
 
             DrawVersionLabel();
+            DrawDescriptionTextArea();
+
+            EditorGUILayout.Space();
+
             DrawTriggerDropdown();
             DrawModeDropdown();
             HandleDrawSourceGoField();
@@ -53,6 +58,12 @@ namespace ActionTrigger {
 
             serializedObject.ApplyModifiedProperties();
         }
+
+        private void DrawDescriptionTextArea() {
+            description.stringValue = EditorGUILayout.TextArea(
+                description.stringValue);
+        }
+
         private void OnEnable() {
             Script = (Trigger) target;
 
@@ -62,6 +73,7 @@ namespace ActionTrigger {
             sourceGo = serializedObject.FindProperty("sourceGo");
             unityEventAction = serializedObject.FindProperty("unityEventAction");
             message = serializedObject.FindProperty("message");
+            description = serializedObject.FindProperty("description");
         }
 
         #endregion UNITY MESSAGES

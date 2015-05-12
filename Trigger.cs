@@ -64,6 +64,9 @@ namespace ActionTrigger {
         [SerializeField]
         private UnityEvent unityEventAction;
 
+        [SerializeField]
+        private string description = "Description";
+
         #endregion
 
         #region PROPERTIES
@@ -99,6 +102,11 @@ namespace ActionTrigger {
         public UnityEvent UnityEventAction {
             get { return unityEventAction; }
             set { unityEventAction = value; }
+        }
+
+        public string Description {
+            get { return description; }
+            set { description = value; }
         }
 
         #endregion PROPERTIES
