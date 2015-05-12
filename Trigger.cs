@@ -201,6 +201,10 @@ namespace ActionTrigger {
             DestroyObject(targetGameObject);
         }
 
+        public void ExecuteAction() {
+            PerformAction();
+        }
+
         #endregion METHODS
     }
 
