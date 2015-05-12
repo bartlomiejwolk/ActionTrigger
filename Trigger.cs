@@ -24,7 +24,9 @@ namespace ActionTrigger {
         #endregion CONSTANTS
 
         #region FIELDS
+        #endregion FIELDS
 
+        #region INSPECTOR FIELDS
         /// <summary>
         /// The action to accomplish
         /// </summary>
@@ -62,7 +64,7 @@ namespace ActionTrigger {
         [SerializeField]
         private UnityEvent unityEventAction;
 
-        #endregion FIELDS
+        #endregion
 
         #region PROPERTIES
 
