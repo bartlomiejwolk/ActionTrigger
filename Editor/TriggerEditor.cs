@@ -63,6 +63,9 @@ namespace ActionTrigger {
         }
 
         private void DrawIncludeTagDropdown() {
+            if (Script.TriggerType != TriggerType.OnTriggerEnter) return;
+            if (Script.TriggerType != TriggerType.OnTriggerExit) return;
+
             includeTag.stringValue = EditorGUILayout.TagField(
                 new GUIContent(
                     "Tag",
