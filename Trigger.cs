@@ -67,6 +67,12 @@ namespace ActionTrigger {
         [SerializeField]
         private string description = "Description";
 
+        /// <summary>
+        /// Trigger will be executed only for object with specified tag.
+        /// </summary>
+        [SerializeField]
+        private string includeTag;
+
         #endregion
 
         #region PROPERTIES
@@ -104,9 +110,20 @@ namespace ActionTrigger {
             set { unityEventAction = value; }
         }
 
+        /// <summary>
+        /// Optional text to describe purpose of this instance of the component.
+        /// </summary>
         public string Description {
             get { return description; }
             set { description = value; }
+        }
+
+        /// <summary>
+        /// Trigger will be executed only for object with specified tag.
+        /// </summary>
+        public string IncludeTag {
+            get { return includeTag; }
+            set { includeTag = value; }
         }
 
         #endregion PROPERTIES

@@ -36,6 +36,7 @@ namespace ActionTrigger {
         private SerializedProperty triggerType;
         private SerializedProperty unityEventAction;
         private SerializedProperty description;
+        private SerializedProperty includeTag;
 
         #endregion SERIALIZED PROPERTIES
 
@@ -50,6 +51,7 @@ namespace ActionTrigger {
             EditorGUILayout.Space();
 
             DrawTriggerDropdown();
+            DrawIncludeTagDropdown();
             DrawModeDropdown();
             HandleDrawSourceGoField();
             HandleDrawTargetObjField();
@@ -57,6 +59,14 @@ namespace ActionTrigger {
             HandleDrawActionField();
 
             serializedObject.ApplyModifiedProperties();
+        }
+
+        private void DrawIncludeTagDropdown() {
+            includeTag.stringValue = EditorGUILayout.TagField(
+                new GUIContent(
+                    "Tag",
+                    "Only GOs with this tag can trigger action."),
+                    includeTag.stringValue);
         }
 
         private void DrawDescriptionTextArea() {
@@ -74,6 +84,7 @@ namespace ActionTrigger {
             unityEventAction = serializedObject.FindProperty("unityEventAction");
             message = serializedObject.FindProperty("message");
             description = serializedObject.FindProperty("description");
+            includeTag = serializedObject.FindProperty("includeTag");
         }
 
         #endregion UNITY MESSAGES
