@@ -1,4 +1,6 @@
-﻿// Copyright (c) 2015 Bartlomiej Wolk (bartlomiejwolk@gmail.com)
+﻿#define DEBUG_LOGGER
+
+// Copyright (c) 2015 Bartlomiej Wolk (bartlomiejwolk@gmail.com)
 // 
 // This file is part of the ActionTrigger extension for Unity.
 // Licensed under the MIT license. See LICENSE file in the project root folder.
@@ -71,7 +73,7 @@ namespace ActionTrigger {
         /// Trigger will be executed only for object with specified tag.
         /// </summary>
         [SerializeField]
-        private string includeTag;
+        private string includeTag = "Untagged";
 
         #endregion
 
@@ -132,11 +134,13 @@ namespace ActionTrigger {
 
         private void OnTriggerEnter(Collider other) {
             if (TriggerType != TriggerType.OnTriggerEnter) return;
+            if (other.tag != includeTag) return;
 
             PerformAction();
         }
 
         private void OnTriggerExit() {
+            FileLogger.Logger.LogCall();
             if (TriggerType != TriggerType.OnTriggerExit) return;
 
             PerformAction();

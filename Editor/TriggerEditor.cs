@@ -9,6 +9,7 @@ using UnityEngine;
 namespace ActionTrigger {
 
     [CustomEditor(typeof (Trigger))]
+    [CanEditMultipleObjects]
     public sealed class TriggerEditor : Editor {
         #region FIELDS
 
