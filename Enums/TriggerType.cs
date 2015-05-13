@@ -5,6 +5,6 @@
 
 namespace ActionTrigger {
 
-    public enum TriggerType { OnTriggerEnter, OnTriggerExit, Method }
+    public enum TriggerType { OnTriggerEnter, OnTriggerExit, ExternalCall }
 
 }
