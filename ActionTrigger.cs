@@ -21,7 +21,7 @@ namespace ActionTriggerEx {
         #region CONSTANTS
 
         public const string EXTENSION = "ActionTrigger";
-        public const string VERSION = "v0.1.0";
+        public const string VERSION = "v0.1.2";
 
         #endregion CONSTANTS
 
