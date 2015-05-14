@@ -3,7 +3,7 @@
 // This file is part of the ActionTrigger extension for Unity.
 // Licensed under the MIT license. See LICENSE file in the project root folder.
 
-namespace ActionTrigger {
+namespace ActionTriggerEx {
 
     /// <summary>
     ///     A multi-purpose script which causes an action to occur on trigger

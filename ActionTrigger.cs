@@ -1,4 +1,6 @@
-﻿// Copyright (c) 2015 Bartlomiej Wolk (bartlomiejwolk@gmail.com)
+﻿#define DEBUG_LOGGER
+
+// Copyright (c) 2015 Bartlomiej Wolk (bartlomiejwolk@gmail.com)
 // 
 // This file is part of the ActionTrigger extension for Unity.
 // Licensed under the MIT license. See LICENSE file in the project root folder.
@@ -6,7 +8,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace ActionTrigger {
+namespace ActionTriggerEx {
 
     /// <summary>
     ///     Component that can trigger multiple types of action in response to
@@ -15,16 +17,18 @@ namespace ActionTrigger {
     /// <remarks>
     ///     This script was originally part of standard Unity scripts package.
     /// </remarks>
-    public sealed class Trigger : MonoBehaviour {
+    public sealed class ActionTrigger : MonoBehaviour {
         #region CONSTANTS
 
         public const string EXTENSION = "ActionTrigger";
-        public const string VERSION = "v0.1.0";
+        public const string VERSION = "v0.1.2";
 
         #endregion CONSTANTS
 
         #region FIELDS
+        #endregion FIELDS
 
+        #region INSPECTOR FIELDS
         /// <summary>
         /// The action to accomplish
         /// </summary>
@@ -62,7 +66,16 @@ namespace ActionTrigger {
         [SerializeField]
         private UnityEvent unityEventAction;
 
-        #endregion FIELDS
+        [SerializeField]
+        private string description = "Description";
+
+        /// <summary>
+        /// Trigger will be executed only for object with specified tag.
+        /// </summary>
+        [SerializeField]
+        private string includeTag = "Untagged";
+
+        #endregion
 
         #region PROPERTIES
 
@@ -99,17 +112,35 @@ namespace ActionTrigger {
             set { unityEventAction = value; }
         }
 
+        /// <summary>
+        /// Optional text to describe purpose of this instance of the component.
+        /// </summary>
+        public string Description {
+            get { return description; }
+            set { description = value; }
+        }
+
+        /// <summary>
+        /// Trigger will be executed only for object with specified tag.
+        /// </summary>
+        public string IncludeTag {
+            get { return includeTag; }
+            set { includeTag = value; }
+        }
+
         #endregion PROPERTIES
 
         #region UNITY MESSAGES
 
         private void OnTriggerEnter(Collider other) {
             if (TriggerType != TriggerType.OnTriggerEnter) return;
+            if (other.tag != includeTag) return;
 
             PerformAction();
         }
 
         private void OnTriggerExit() {
+            FileLogger.Logger.LogCall();
             if (TriggerType != TriggerType.OnTriggerExit) return;
 
             PerformAction();
@@ -199,6 +230,10 @@ namespace ActionTrigger {
                 targetGameObject.transform.rotation);
 
             DestroyObject(targetGameObject);
+        }
+
+        public void ExecuteAction() {
+            PerformAction();
         }
 
         #endregion METHODS

@@ -3,8 +3,8 @@
 // This file is part of the ActionTrigger extension for Unity.
 // Licensed under the MIT license. See LICENSE file in the project root folder.
 
-namespace ActionTrigger {
+namespace ActionTriggerEx {
 
-    public enum TriggerType { OnTriggerEnter, OnTriggerExit }
+    public enum TriggerType { OnTriggerEnter, OnTriggerExit, ExternalCall }
 
 }

@@ -6,13 +6,14 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace ActionTrigger {
+namespace ActionTriggerEx {
 
-    [CustomEditor(typeof (Trigger))]
-    public sealed class TriggerEditor : Editor {
+    [CustomEditor(typeof (ActionTrigger))]
+    [CanEditMultipleObjects]
+    public sealed class ActionTriggerEditor : Editor {
         #region FIELDS
 
-        private Trigger Script { get; set; }
+        private ActionTrigger Script { get; set; }
 
         #endregion FIELDS
 
@@ -21,7 +22,7 @@ namespace ActionTrigger {
         [MenuItem("Component/ActionTrigger")]
         private static void AddWatcherComponent() {
             if (Selection.activeGameObject != null) {
-                Selection.activeGameObject.AddComponent(typeof (Trigger));
+                Selection.activeGameObject.AddComponent(typeof (ActionTrigger));
             }
         }
 
@@ -35,6 +36,8 @@ namespace ActionTrigger {
         private SerializedProperty targetObj;
         private SerializedProperty triggerType;
         private SerializedProperty unityEventAction;
+        private SerializedProperty description;
+        private SerializedProperty includeTag;
 
         #endregion SERIALIZED PROPERTIES
 
@@ -44,7 +47,12 @@ namespace ActionTrigger {
             serializedObject.Update();
 
             DrawVersionLabel();
+            DrawDescriptionTextArea();
+
+            EditorGUILayout.Space();
+
             DrawTriggerDropdown();
+            DrawIncludeTagDropdown();
             DrawModeDropdown();
             HandleDrawSourceGoField();
             HandleDrawTargetObjField();
@@ -53,8 +61,25 @@ namespace ActionTrigger {
 
             serializedObject.ApplyModifiedProperties();
         }
+
+        private void DrawIncludeTagDropdown() {
+            if (Script.TriggerType != TriggerType.OnTriggerEnter
+                && Script.TriggerType != TriggerType.OnTriggerExit) return;
+
+            includeTag.stringValue = EditorGUILayout.TagField(
+                new GUIContent(
+                    "Tag",
+                    "Only GOs with this tag can trigger action."),
+                    includeTag.stringValue);
+        }
+
+        private void DrawDescriptionTextArea() {
+            description.stringValue = EditorGUILayout.TextArea(
+                description.stringValue);
+        }
+
         private void OnEnable() {
-            Script = (Trigger) target;
+            Script = (ActionTrigger) target;
 
             triggerType = serializedObject.FindProperty("triggerType");
             action = serializedObject.FindProperty("action");
@@ -62,6 +87,8 @@ namespace ActionTrigger {
             sourceGo = serializedObject.FindProperty("sourceGo");
             unityEventAction = serializedObject.FindProperty("unityEventAction");
             message = serializedObject.FindProperty("message");
+            description = serializedObject.FindProperty("description");
+            includeTag = serializedObject.FindProperty("includeTag");
         }
 
         #endregion UNITY MESSAGES
@@ -71,8 +98,8 @@ namespace ActionTrigger {
             EditorGUILayout.LabelField(
                 string.Format(
                     "{0} ({1})",
-                    Trigger.VERSION,
-                    Trigger.EXTENSION));
+                    ActionTrigger.VERSION,
+                    ActionTrigger.EXTENSION));
         }
 
 
