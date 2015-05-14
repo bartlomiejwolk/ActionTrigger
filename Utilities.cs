@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace ActionTrigger {
+namespace ActionTriggerEx {
 
     public enum InfoType {
 

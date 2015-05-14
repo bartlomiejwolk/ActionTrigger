@@ -6,7 +6,7 @@
 using UnityEditor;
 using UnityEngine;
 
-namespace ActionTrigger {
+namespace ActionTriggerEx {
 
     [CustomEditor(typeof (Trigger))]
     [CanEditMultipleObjects]

@@ -8,7 +8,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 
-namespace ActionTrigger {
+namespace ActionTriggerEx {
 
     /// <summary>
     ///     Component that can trigger multiple types of action in response to
