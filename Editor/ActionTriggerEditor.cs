@@ -8,12 +8,12 @@ using UnityEngine;
 
 namespace ActionTriggerEx {
 
-    [CustomEditor(typeof (Trigger))]
+    [CustomEditor(typeof (ActionTrigger))]
     [CanEditMultipleObjects]
-    public sealed class TriggerEditor : Editor {
+    public sealed class ActionTriggerEditor : Editor {
         #region FIELDS
 
-        private Trigger Script { get; set; }
+        private ActionTrigger Script { get; set; }
 
         #endregion FIELDS
 
@@ -22,7 +22,7 @@ namespace ActionTriggerEx {
         [MenuItem("Component/ActionTrigger")]
         private static void AddWatcherComponent() {
             if (Selection.activeGameObject != null) {
-                Selection.activeGameObject.AddComponent(typeof (Trigger));
+                Selection.activeGameObject.AddComponent(typeof (ActionTrigger));
             }
         }
 
@@ -79,7 +79,7 @@ namespace ActionTriggerEx {
         }
 
         private void OnEnable() {
-            Script = (Trigger) target;
+            Script = (ActionTrigger) target;
 
             triggerType = serializedObject.FindProperty("triggerType");
             action = serializedObject.FindProperty("action");
@@ -98,8 +98,8 @@ namespace ActionTriggerEx {
             EditorGUILayout.LabelField(
                 string.Format(
                     "{0} ({1})",
-                    Trigger.VERSION,
-                    Trigger.EXTENSION));
+                    ActionTrigger.VERSION,
+                    ActionTrigger.EXTENSION));
         }
 
 
